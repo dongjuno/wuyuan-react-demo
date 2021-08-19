@@ -1,0 +1,36 @@
+.add{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+.back{
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 10px;
+}
+.back span{
+    padding-left:5%;
+}
+
+.ant-input{
+    width: 90%;
+    margin-left: 5%;
+    height: 300px;
+    padding: 0 5px;
+    border: none;
+    outline: none;
+}
+.btn{
+    width: 90%;
+    height: 40px;
+    border: none;
+    background-color: #1890FF;
+    color: #fff;
+    border-radius: 10px;
+    margin-left: 5%;
+}
