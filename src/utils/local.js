@@ -2,7 +2,7 @@
  * 操作本地存储的封装
  */
 
- const local = {
+const local = {
     get(key) {
         return JSON.parse(window.localStorage.getItem(key))
     },

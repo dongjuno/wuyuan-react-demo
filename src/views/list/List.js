@@ -1,5 +1,6 @@
 import { List, Button } from 'antd';
 import React from 'react';
+
 import './List.css'
 import local from '../../utils/local'
 import Add from '../add/Add'
@@ -21,6 +22,7 @@ export default class LoadMoreList extends React.Component {
       { text: '12 Racing car sprays burning fuel into crowd.', isTrue: true },
     ],
   };
+
   componentDidMount() {
     let newData = local.get('data')
     if (newData) {
@@ -32,7 +34,6 @@ export default class LoadMoreList extends React.Component {
     }
     console.log(this.state.data)
   }
-
 
   eaitData = (index) => {
     let newData = this.state.data.map((v, i) => {
@@ -48,7 +49,6 @@ export default class LoadMoreList extends React.Component {
     })
   }
 
-
   clearData = (index) => {
     this.state.data.splice(index, 1)
     let newData = this.state.data
@@ -61,33 +61,32 @@ export default class LoadMoreList extends React.Component {
     document.querySelector('.add').style.display = 'block'
   }
 
+  render() {
+    return (
+      <div>
+        <List
+          size="small"
+          className='list-warpper'
+          header={<div className='header'><p>代办事项</p><Button onClick={this.openAdd}>添加</Button></div>}
+          bordered
+          dataSource={this.state.data}
+          renderItem={(item, i) =>
+            <List.Item className='lists'
+              actions={[<Button onClick={() => { this.eaitData(i) }}>{item.isTrue ? '编辑' : '完成'}</Button>, <Button onClick={() => { this.clearData(i) }}>删除</Button>]}
+            >
+              <div className='content'>
+                <p className='text' style={{ display: item.isTrue ? 'block' : 'none' }}>{item.text}</p>
+                <input type="text" defaultValue={item.text} style={{ display: item.isTrue ? 'none' : 'block' }} className='input' />
+              </div>
+            </List.Item>
+          }
+        />
+        <Add data={this.state.data} />
+      </div>
 
-render() {
-
-  return (
-    <div>
-      <List
-        size="small"
-        className='list-warpper'
-        header={<div className='header'><p>代办事项</p><Button onClick={this.openAdd}>添加</Button></div>}
-        bordered
-        dataSource={this.state.data}
-        renderItem={(item, i) =>
-          <List.Item className='lists'
-            actions={[<Button onClick={() => { this.eaitData(i) }}>{item.isTrue ? '编辑' : '完成'}</Button>, <Button onClick={() => { this.clearData(i) }}>删除</Button>]}
-          >
-            <div className='content'>
-              <p className='text' style={{ display: item.isTrue ? 'block' : 'none' }}>{item.text}</p>
-              <input type="text" defaultValue={item.text} style={{ display: item.isTrue ? 'none' : 'block' }} className='input'/>
-            </div>
-          </List.Item>
-        }
-      />
-      <Add data={this.state.data} />
-    </div>
-
-  );
+    );
+  }
 }
-}
+
 
 
